@@ -70,7 +70,7 @@ class DPD   {
         $PickupDateFrom = date('H:i', strtotime(date("0-0-0 $PickupHourFrom:0:0")));
         $PickupDateTo = date('H:i', strtotime(date("0-0-0 $PickupHourTo:0:0")));
         $this->DPDServices->packagesPickupCall($PickupDate, $PickupDateFrom, $PickupDateTo, new PickupCallSimplifiedDetailsDPPV1(
-            new PickupPayerDPPV1('227676', 'PanSzybka', 'PAN SZYBKA'),
+            new PickupPayerDPPV1('', '', ''),
             new PickupCustomerDPPV1($this->DPDPackages->receiver->company, $this->DPDPackages->receiver->name, $this->DPDPackages->receiver->phone),
             new PickupSenderDPPV1($this->DPDPackages->sender->company, $this->DPDPackages->sender->name, $this->DPDPackages->sender->address, $this->DPDPackages->sender->city, $this->DPDPackages->sender->postalCode, $this->DPDPackages->sender->phone),
             new packagesParams(false, 0, false, 0, 0, 0, 0, $this->DPDPackages->parcels->sizeZ, $this->DPDPackages->parcels->sizeX, $this->DPDPackages->parcels->weight, $this->DPDPackages->parcels->sizeY, 1, $this->DPDPackages->parcels->weight, true)
