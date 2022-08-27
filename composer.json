@@ -1,0 +1,19 @@
+{
+    "name": "maciejlewandowskii/dpdapi_pl",
+    "description": "Simple PHP Lib for using Polish version of DPD API, you can track or send parcels.",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Ml\\DpdApi\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Maciej Lewandowski",
+            "email": "costerxd53@gmail.com"
+        }
+    ],
+    "require": {
+      "ext-soap": "*"
+    }
+}
