@@ -26,11 +26,18 @@ class DPD   {
     protected InfoServices $InfoServices;
     public string $WayBill;
     public string $SessionID;
+    protected int $PayerNumber;
+    protected string $PayerName;
+    protected string $PayerCostCenter;
 
-    public function __construct(AuthDataV1 $AuthDataV1) {
+
+    public function __construct(AuthDataV1 $AuthDataV1, int $PayerNumber, string $PayerName, string $PayerCostCenter) {
         $this->AuthDataV1 = $AuthDataV1;
         $this->DPDServices = new DPDServices($this->AuthDataV1);
         $this->InfoServices = new InfoServices($this->AuthDataV1);
+        $this->PayerNumber = $PayerNumber;
+        $this->PayerName = $PayerName;
+        $this->PayerCostCenter = $PayerCostCenter;
     }
 
     public function trackPackagebyWaybill(string $waybill, bool $eventsSelectTypeALL = true): array {
@@ -70,7 +77,7 @@ class DPD   {
         $PickupDateFrom = date('H:i', strtotime(date("0-0-0 $PickupHourFrom:0:0")));
         $PickupDateTo = date('H:i', strtotime(date("0-0-0 $PickupHourTo:0:0")));
         $this->DPDServices->packagesPickupCall($PickupDate, $PickupDateFrom, $PickupDateTo, new PickupCallSimplifiedDetailsDPPV1(
-            new PickupPayerDPPV1('', '', ''),
+            new PickupPayerDPPV1($this->PayerNumber, $this->PayerName, $this->PayerCostCenter),
             new PickupCustomerDPPV1($this->DPDPackages->receiver->company, $this->DPDPackages->receiver->name, $this->DPDPackages->receiver->phone),
             new PickupSenderDPPV1($this->DPDPackages->sender->company, $this->DPDPackages->sender->name, $this->DPDPackages->sender->address, $this->DPDPackages->sender->city, $this->DPDPackages->sender->postalCode, $this->DPDPackages->sender->phone),
             new packagesParams(false, 0, false, 0, 0, 0, 0, $this->DPDPackages->parcels->sizeZ, $this->DPDPackages->parcels->sizeX, $this->DPDPackages->parcels->weight, $this->DPDPackages->parcels->sizeY, 1, $this->DPDPackages->parcels->weight, true)
