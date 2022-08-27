@@ -41,7 +41,8 @@ class DPD   {
     }
 
     public function trackPackagebyWaybill(string $waybill, bool $eventsSelectTypeALL = true): array {
-        return (array) $this->InfoServices->getEventsForWaybill($waybill, $eventsSelectTypeALL);
+        $result = $this->InfoServices->getEventsForWaybill($waybill, $eventsSelectTypeALL);
+        return (array) $result->return;
     }
 
     public function setPackages(DPDParcels $DPDParcels, DPDReceiver $DPDReceiver, DPDSender $DPDSender, string $LabelText, float $PayByReceiver = 0): void    {
