@@ -29,7 +29,7 @@ $waybill = '1000452444028U';
     $DPD = new DPD($AuthDataV1, 0000, 'FIRMA1', 'Oddział 2');
     $DPD->setPackages(
         new DPDParcels(10, 10, 10, 10, 'TEST', 'NIE NADAWAĆ NIC', 'TEST DPD', 'TO TYLKO TEST'),
-        new DPDReceiver('', ' ', '', '', 'PL', '', '', ''),
+        new DPDReceiver('', '', '', '', 'PL', '', '', ''),
         new DPDSender('', '', '', '', 'PL', '', '', ''),
         'TEST ZAMAWIANIA KURIERA DPD ZA POBRANIEM',
         99.99

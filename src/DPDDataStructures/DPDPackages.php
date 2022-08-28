@@ -12,7 +12,7 @@ class DPDPackages
     public string $ref1;
     public string $ref2;
     public string $ref3;
-    public DPDServices $services;
+    public array $services;
 
     public function __construct(DPDParcels $Parcels, string $PayerType, int $ThirdPartyFID, DPDReceiver $Receiver, DPDSender $Sender, string $Ref1, string $Ref2, string $Ref3, DPDServices $Services)
     {
@@ -24,6 +24,6 @@ class DPDPackages
         $this->ref1 = $Ref1;
         $this->ref2 = $Ref2;
         $this->ref3 = $Ref3;
-        $this->services = $Services;
+        $this->services = $Services->services;
     }
 }
