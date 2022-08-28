@@ -57,8 +57,8 @@ class DPD   {
     public function getPackagesNumbers(): array {
         $openUMLFeV5 =  new DPDDataStructures\openUMLFeV5($this->DPDPackages);
         $result = $this->DPDServices->generatePackagesNumbers($openUMLFeV5, 1);
-        $this->WayBill = $result->return->Packages->Package[0]->Parcels->Parcel[0]->Waybill;
-        $this->SessionID = $result->return->SessionId;
+        $this->WayBill = !is_null($result->return->Packages->Package[0]->Parcels->Parcel[0]->Waybill) ?? '';
+        $this->SessionID = !is_null($result->return->SessionId) ?? '';
         return (array) $result;
     }
 
