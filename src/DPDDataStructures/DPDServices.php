@@ -8,7 +8,7 @@ use Ml\DpdApi\DPDDataStructures\DPDServices\guarantee;
 
 class DPDServices
 {
-    public array $services;
+    public array $services = array();
 
     public function addInsurance(declaredValue $declaredValue): void
     {
