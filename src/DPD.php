@@ -9,6 +9,7 @@ use Ml\DpdApi\DPDDataStructures\DPDParcels;
 use Ml\DpdApi\DPDDataStructures\DPDReceiver;
 use Ml\DpdApi\DPDDataStructures\DPDSender;
 use Ml\DpdApi\DPDDataStructures\DPDServices\cod;
+use Ml\DpdApi\DPDDataStructures\DPDServices\declaredValue;
 use Ml\DpdApi\DPDDataStructures\PickupCallSimplifiedDetailsDPPV1;
 use Ml\DpdApi\DPDDataStructures\PickupCallSimplifiedDetailsDPPV1\packagesParams;
 use Ml\DpdApi\DPDDataStructures\PickupCallSimplifiedDetailsDPPV1\PickupCustomerDPPV1;
@@ -45,9 +46,10 @@ class DPD   {
         return (array) $result->return;
     }
 
-    public function setPackages(DPDParcels $DPDParcels, DPDReceiver $DPDReceiver, DPDSender $DPDSender, string $LabelText, float $PayByReceiver = 0): void    {
+    public function setPackages(DPDParcels $DPDParcels, DPDReceiver $DPDReceiver, DPDSender $DPDSender, string $LabelText, float $PayByReceiver = 0, float $Insurance = 0): void    {
         $DPDServices = new DPDDataStructures\DPDServices;
         if($PayByReceiver != 0) $DPDServices->addPaymentOnDelivery(new cod($PayByReceiver, 'PLN'));
+        if($Insurance != 0) $DPDServices->addInsurance(new declaredValue($Insurance, 'PLN'));
         $ref1 = substr($LabelText, 0, 30);
         $ref2 = substr($LabelText, 30, 30);
         $ref3 = substr($LabelText, 60, 30);
